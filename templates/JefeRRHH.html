@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Jefe de Recursos Humanos </title>
+    <style>
+        a{
+            text-decoration: none;
+        }
+
+        body{
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(90deg, #58D68D  , #5DADE2  );
+            height: 96vh;
+            font-size: 18px;
+            font-family: sans-serif;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            font-size: 18px;
+        }
+
+        th{
+            background-color: #D0D3D4;
+            padding: 1rem;
+            text-align: center;
+            width: 16.6%;
+        }
+
+        td{
+            background-color: black;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            width: 16.6%;
+        }
+
+        #Datos_Personales{
+            display: none;
+        }
+
+        #Datos_Laborales{
+            display: none;
+        }
+
+        #Datos_Contacto{
+            display: none;
+        }
+
+        #Datos_Carga{
+            display: none;
+        }
+
+        #Listado_Trabajadores{
+            display: none;
+        }
+
+        .Center{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .Contenedor-Menu{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 70%;
+        }
+
+        .Boton{
+            border: 3px solid black;
+            border-radius: 20px;
+            background-color: #1F618D;
+            color: white;
+            font-size: 20px;
+            height: 4rem;
+            width: 250px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .Boton:hover{
+            background-color: #154360;
+        }
+
+        .Boton-Flecha{
+            border: 3px solid black;
+            border-radius: 20px;
+            background-color: #1F618D;
+            color: white;
+            font-size: 20px;
+            height:40px;
+            width: 40px;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;"> Jefe de Recursos Humanos </h1>
+    <p style="text-align: center;"> {{ Datos_JefeRRHH['NOMBRE']}} </p>
+
+    <div class="Contenedor-Menu">
+        <button type="button" class="Boton Center" id="Listado"> Mostrar listado de Funcionarios </button>
+        <br>
+        <button type="button" class="Boton Center" id="Personal"> Mostrar datos personales </button>
+        <br>
+        <button type="button" class="Boton Center" id="Laboral"> Mostrar datos laborales </button>
+        <br>
+        <button type="button" class="Boton Center" id="Contacto"> Mostrar datos contacto de emergencia </button>
+        <br>
+        <button type="button" class="Boton Center" id="Carga"> Mostrar datos carga familiar </button>
+        <br>
+        <a href="/Funcionario" class="Boton Center"> Modificar mis datos </a>
+    </div>
+
+    <!-- LISTADO DE TRABAJADORES -->
+
+    <div class="Center" id="Listado_Trabajadores" style="flex-direction: column;">
+        <button class="Boton-Flecha" id="Flecha_Listado"> ◀ </button>
+        <br>
+        <table style="width: 90%;">
+            <tbody>
+                <tr>
+                    <th> RUT </th>
+                    <th> Nombre </th>
+                    <th> Sexo </th>
+                    <th> Cargo </th>
+                    <th> Fecha de Ingreso </th>
+                    <th> Área </th>
+                    <th> Departamento </th>
+                </tr>
+
+                {% for trabajador in Listado_Trabajadores %}
+                <tr>
+                    <td>{{ trabajador['RUT'] }}</td>
+                    <td>{{ trabajador['NOMBRE'] }}</td>
+                    <td>{{ trabajador['SEXO'] }}</td>
+                    <td>{{ trabajador['CARGO'] }}</td>
+                    <td>{{ trabajador['FECHA_INGRESO'] }}</td>
+                    <td>{{ trabajador['AREA'] }}</td>
+                    <td>{{ trabajador['DEPARTAMENTO'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+
+    <div class="Center" id="Datos_Personales" style="flex-direction: column;">
+        <button class="Boton-Flecha" id="Flecha_Personal"> ◀ </button>
+        <br>
+        <table style="width: 90%;">
+            <tbody>
+                <tr>
+                    <th> RUT </th>
+                    <th>Nombre</th>
+                    <th>Sexo</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                </tr>
+                <tr>
+                    <td>{{ Datos_JefeRRHH['RUT']}}</td>
+                    <td>{{ Datos_JefeRRHH['NOMBRE']}}</td>
+                    <td>{{ Datos_JefeRRHH['SEXO']}}</td>
+                    <td>{{ Datos_JefeRRHH['DIRECCION']}}</td>
+                    <td>{{Datos_JefeRRHH['TELEFONO']}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="Center" id="Datos_Laborales" style="flex-direction: column;">
+        <button class="Boton-Flecha" id="Flecha_Laboral"> ◀ </button>
+        <br>
+        <table style="width: 90%;">
+            <tbody>
+                <tr>
+                    <th> Cargo </th>
+                    <th> Fecha de Ingreso </th>
+                    <th> Área </th>
+                    <th> Departamento </th>
+                </tr>
+                <tr>
+                    <td>{{ Datos_Laborales['CARGO']}}</td>
+                    <td>{{ Datos_Laborales['FECHA_INGRESO']}}</td>
+                    <td>{{ Datos_Laborales['AREA']}}</td>
+                    <td>{{ Datos_Laborales['DEPARTAMENTO']}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="Center" id="Datos_Contacto" style="flex-direction: column;">
+        <button class="Boton-Flecha" id="Flecha_Contacto"> ◀ </button>
+        <br>
+        <table style="width: 90%;">
+            <tbody>
+                <tr>
+                    <th> Nombre </th>
+                    <th> Relación </th>
+                    <th> Teléfono </th>
+                </tr>
+                <tr>
+                    <td>{{ Contacto_Emergencia['NOMBRE']}}</td>
+                    <td>{{ Contacto_Emergencia['RELACION']}}</td>
+                    <td>{{ Contacto_Emergencia['TELEFONO']}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="Center" id="Datos_Carga" style="flex-direction: column;">
+        <button class="Boton-Flecha" id="Flecha_Carga"> ◀ </button>
+        <br>
+        <table style="width: 90%;">
+            <tbody>
+                <tr>
+                    <th> Nombre </th>
+                    <th> Parentesco </th>
+                    <th> Sexo </th>
+                    <th> RUT </th>
+                </tr>
+                <tr>
+                    <td>{{ Carga_Familiar['NOMBRE']}}</td>
+                    <td>{{ Carga_Familiar['PARENTESCO']}}</td>
+                    <td>{{ Carga_Familiar['SEXO']}}</td>
+                    <td>{{ Carga_Familiar['RUT']}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const Boton_Listado = document.getElementById('Listado');
+        const Boton_Personal = document.getElementById('Personal');
+        const Boton_Laboral = document.getElementById('Laboral');
+        const Boton_Contacto = document.getElementById('Contacto');
+        const Boton_Carga = document.getElementById('Carga');
+
+        const contenedorMenu = document.querySelector('.Contenedor-Menu');
+        // Info
+        const Listado = document.getElementById('Listado_Trabajadores');
+        const Datos_Personales = document.getElementById('Datos_Personales');
+        const Datos_Laborales = document.getElementById('Datos_Laborales');
+        const Datos_Contacto = document.getElementById('Datos_Contacto');
+        const Datos_Carga = document.getElementById('Datos_Carga');
+
+        const Flecha_Listado = document.getElementById('Flecha_Listado');
+        const Flecha_Personal = document.getElementById('Flecha_Personal');
+        const Flecha_Laboral = document.getElementById('Flecha_Laboral');
+        const Flecha_Contacto = document.getElementById('Flecha_Contacto');
+        const Flecha_Carga = document.getElementById('Flecha_Carga');
+
+        // Mostrar Listado de Trabajadores
+        Boton_Listado.addEventListener('click', function() {
+            Boton_Listado.style.display = "none";
+            Boton_Personal.style.display = "none";
+            Boton_Laboral.style.display = "none";
+            Boton_Contacto.style.display = "none";
+            Boton_Carga.style.display = "none";
+            contenedorMenu.style.display = "none";
+
+            Listado.style.display = "flex";
+        });
+        
+        // Mostrar Información Personal
+        Boton_Personal.addEventListener('click', function(){
+            Boton_Listado.style.display = "none";
+            Boton_Personal.style.display = "none";
+            Boton_Laboral.style.display = "none";
+            Boton_Contacto.style.display = "none";
+            Boton_Carga.style.display = "none";
+            contenedorMenu.style.display = "none";
+
+            Datos_Personales.style.display = "flex";
+        })
+
+        // Mostrar Información Laboral
+        Boton_Laboral.addEventListener('click', function(){
+            Boton_Listado.style.display = "none";
+            Boton_Personal.style.display = "none";
+            Boton_Laboral.style.display = "none";
+            Boton_Contacto.style.display = "none";
+            Boton_Carga.style.display = "none";
+            contenedorMenu.style.display = "none";
+
+            Datos_Laborales.style.display = "flex";
+        })
+
+        // Mostrar Información Contacto
+        Boton_Contacto.addEventListener('click', function(){
+            Boton_Listado.style.display = "none";
+            Boton_Personal.style.display = "none";
+            Boton_Laboral.style.display = "none";
+            Boton_Contacto.style.display = "none";
+            Boton_Carga.style.display = "none";
+            contenedorMenu.style.display = "none";
+
+            Datos_Contacto.style.display = "flex";
+        })
+
+        // Mostrar Información Carga Familiar
+        Boton_Carga.addEventListener('click', function(){
+            Boton_Listado.style.display = "none";
+            Boton_Personal.style.display = "none";
+            Boton_Laboral.style.display = "none";
+            Boton_Contacto.style.display = "none";
+            Boton_Carga.style.display = "none";
+            contenedorMenu.style.display = "none";
+
+            Datos_Carga.style.display = "flex";
+        })
+
+
+        Flecha_Listado.addEventListener('click', function(){
+            Boton_Listado.style.display = "flex";
+            Boton_Personal.style.display = "flex";
+            Boton_Laboral.style.display = "flex";
+            Boton_Contacto.style.display = "flex";
+            Boton_Carga.style.display = "flex";
+            contenedorMenu.style.display = "flex";
+
+            Listado.style.display = "none";
+        });
+
+        Flecha_Personal.addEventListener('click', function(){
+            Boton_Listado.style.display = "flex";
+            Boton_Personal.style.display = "flex";
+            Boton_Laboral.style.display = "flex";
+            Boton_Contacto.style.display = "flex";
+            Boton_Carga.style.display = "flex";
+            contenedorMenu.style.display = "flex";
+
+            Datos_Personales.style.display = "none";
+        });
+
+        Flecha_Laboral.addEventListener('click', function(){
+            Boton_Listado.style.display = "flex";
+            Boton_Personal.style.display = "flex";
+            Boton_Laboral.style.display = "flex";
+            Boton_Contacto.style.display = "flex";
+            Boton_Carga.style.display = "flex";
+            contenedorMenu.style.display = "flex";
+
+            Datos_Laborales.style.display = "none";
+        });
+
+        Flecha_Contacto.addEventListener('click', function(){
+            Boton_Listado.style.display = "flex";
+            Boton_Personal.style.display = "flex";
+            Boton_Laboral.style.display = "flex";
+            Boton_Contacto.style.display = "flex";
+            Boton_Carga.style.display = "flex";
+            contenedorMenu.style.display = "flex";
+
+            Datos_Contacto.style.display = "none";
+        });
+
+        Flecha_Carga.addEventListener('click', function(){
+            Boton_Listado.style.display = "flex";
+            Boton_Personal.style.display = "flex";
+            Boton_Laboral.style.display = "flex";
+            Boton_Contacto.style.display = "flex";
+            Boton_Carga.style.display = "flex";
+            contenedorMenu.style.display = "flex";
+
+            Datos_Carga.style.display = "none";
+        });
+
+        
+    </script>
+</body>
+</html>

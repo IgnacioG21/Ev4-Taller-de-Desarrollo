@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Registro de Funcionarios </title>
+    <style>
+        a{
+            text-decoration: none;
+        }
+
+        body{
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(90deg, #58D68D  , #5DADE2  );
+            height: 97vh;
+            font-size: 18px;
+            font-family: sans-serif;
+        }
+
+        input{
+            height: 1.9rem;
+            width: 250px;
+            text-align: center;
+        }
+        
+        label{
+            margin-bottom: 5px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            font-size: 18px;
+        }
+
+        th{
+            background-color: #D0D3D4;
+            padding: 1rem;
+            text-align: center;
+            width: 16.6%;
+        }
+
+        td{
+            background-color: black;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            width: 16.6%;
+        }
+
+        .Boton{
+            border: 3px solid black;
+            border-radius: 20px;
+            background-color: #1F618D;
+            color: white;
+            font-size: 20px;
+            height: 4rem;
+            width: 250px;
+            cursor: pointer;
+        }
+
+        .Boton:hover{
+            background-color: #154360;
+        }
+
+        .Center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Center1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .Center2{
+            display: flex;
+            justify-content: center;
+        }
+
+        .Contenedor{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .Contenedor-Input{
+            border: 3px solid white;
+            border-radius: 10px;
+            background-color: black;
+            color: white;
+            padding: 1rem 0rem 3rem 0rem;
+
+            width: 500px;
+        }
+
+        .Contenedor-Menu{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 90%;
+        }
+
+        #Formulario{
+            display: none;
+        }
+
+        .Boton-Flecha{
+            border: 3px solid black;
+            border-radius: 20px;
+            background-color: #1F618D;
+            color: white;
+            font-size: 20px;
+            height:40px;
+            width: 40px;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        #Listado_Funcionarios{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="Contenedor-Menu" id="Menu">
+        <button class="Boton" id="Listado"> Listado de Funcionarios </button>
+        <br>
+        <button class="Boton" id="Registro"> Registro de Funcionarios </button>
+        <br>
+        <a href="/Funcionario" class="Boton Center"> Modificar mis datos </a>
+        <br>
+        <a href="/acceso-login" class="Boton Center"> Cerrar sesión </a>
+    </div>
+
+    <div class="Center1" id="Listado_Funcionarios">
+        <h1>Listado de Funcionarios</h1>
+        <button type="button" class="Boton-Flecha" id="Flecha_Listado"> ◀ </button>
+        <br>
+        <table style="width: 90%;">
+            <thead>
+                <tr>
+                    <th>RUT</th>
+                    <th>Nombre</th>
+                    <th>Sexo</th>
+                    <th>Cargo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for funcionario in Listado %}
+                <tr>
+                    <td>{{ funcionario['RUT'] }}</td>
+                    <td>{{ funcionario['NOMBRE'] }}</td>
+                    <td>{{ funcionario['SEXO'] }}</td>
+                    <td>{{ funcionario['CARGO'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <section id="Formulario" class="Center1">
+        <h1 class="Center" style="font-size: 2.3rem;"> Registro de Funcionarios </h1>
+        <button type="button" class="Boton-Flecha" id="Flecha_Registro"> ◀ </button>
+        <br>
+        <form action="/FuncionarioRRHH" method="post">
+            <div class="Center1">
+                <div class="Center" style="margin-bottom: 2rem;">
+                    <div class="Contenedor-Input">
+                        <h2 style="text-align: center;"> Usuario </h2>
+                        <span class="Center1">
+                            <label for="Usuario"> Nombre de Usuario </label>
+                            <input type="text" name="NombreUsuario" id="Usuario" placeholder="Nombre de Usuario">
+                            <br>
+                        </span>
+
+                        <span class="Center1">
+                            <label for="Contraseña"> Contraseña </label>
+                            <input type="text" name="Contraseña" id="Contraseña" placeholder="Contraseña">
+                            <br>
+                        </span>
+
+                        <span class="Center1">
+                            <label for="Rol"> Rol </label>
+                            <input type="text" name="Rol" id="Rol" placeholder="Rol de Usuario">
+                        </span>
+                    </div>
+                </div>
+
+                <div class="Contenedor">
+                    <!-- Datos Personales -->
+                    <div class="Center2" style="margin-bottom: 2rem;">
+                        <div class="Contenedor-Input">
+                            <h2 style="text-align: center;"> Datos Personales </h2>
+                            <span class="Center1">
+                                <label for="NombreFuncionario"> Nombre Completo </label>
+                                <input type="text" name="NombreFuncionario" id="NombreFuncionario" placeholder="Nombre completo de Funcionario">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="RUTFuncionario"> RUT </label>
+                                <input type="text" name="RUTFuncionario" id="RUTFuncionario" placeholder="Rut de Funcionario">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="SexoFuncionario"> Sexo </label>
+                                <input type="text" name="SexoFuncionario" id="SexoFuncionario" placeholder="Sexo de Funcionario">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="Dirección"> Dirección </label>
+                                <input type="text" name="Dirección" id="Dirección" placeholder="Dirección de Funcionario">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="TelefonoFuncionario"> Teléfono </label>
+                                <input type="text" name="TelefonoFuncionario" id="TelefonoFuncionario" placeholder="Teléfono de Funcionario">
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Datos Laborales-->
+                    <div class="Center2">
+                        <div class="Contenedor-Input" style="margin-bottom: 2rem;">
+                            <h2 style="text-align: center;"> Datos Laborales </h2>
+                            <span class="Center1">
+                                <label for="Cargo"> Cargo </label>
+                                <input type="text" name="Cargo" id="Cargo" placeholder="Cargo de Funcionario">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="FechaIngreso"> Fecha de Ingreso </label>
+                                <input type="date" name="FechaIngreso" id="FechaIngreso">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="Area"> Área </label>
+                                <input type="text" name="Area" id="Area" placeholder="Área de Funcionario">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="Departamento"> Departamento </label>
+                                <input type="text" name="Departamento" id="Departamento" placeholder="Departamento de Funcionario">
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Datos Contacto -->
+                    <div class="Center2">
+                        <div class="Contenedor-Input">
+                            <h2 style="text-align: center;"> Datos Contacto de Emergencia </h2>
+                            <span class="Center1">
+                                <label for="NombreContacto"> Nombre </label>
+                                <input type="text" name="NombreContacto" id="NombreContacto" placeholder="Nombre completo de Contacto">
+                                <br>
+                            </span>
+                            
+                            <span class="Center1">
+                                <label for="Relacion"> Relación </label>
+                                <input type="text" name="Relacion" id="Relacion" placeholder="Relación con Funcionario">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="TelefonoContacto"> Teléfono </label>
+                                <input type="text" name="TelefonoContacto" id="TelefonoContacto" placeholder="Teléfono de Contacto">
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Datos Familiares -->
+                    <div class="Center2">
+                        <div class="Contenedor-Input">
+                            <h2 style="text-align: center;"> Datos Carga familiar </h2>
+                            <span class="Center1">
+                                <label for="NombreCarga"> Nombre  </label>
+                                <input type="text" name="NombreCarga" id="NombreCarga" placeholder="Nombre de Carga Familiar">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="Parentesco"> Parentesco </label>
+                                <input type="text" name="Parentesco" id="Parentesco" placeholder="Parentesco con Funcionario">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="SexoCarga"> Sexo </label>
+                                <input type="text" name="SexoCarga" id="SexoCarga" placeholder="Sexo de Carga Familiar">
+                                <br>
+                            </span>
+
+                            <span class="Center1">
+                                <label for="RUTCarga"> RUT </label>
+                                <input type="text" name="RUTCarga" id="RUTCarga" placeholder="RUT de Carga Familiar">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <span class="Center">
+                    <button type="submit" class="Boton"> Registrar Funcionario </button>
+                </span> 
+            </div>
+        </form>
+    </section>
+    <br>
+    <br>
+
+    <script>
+        const Menu = document.getElementById('Menu');
+        const Formulario = document.getElementById('Formulario');
+        const Listado_Funcionarios = document.getElementById('Listado_Funcionarios')
+
+        const Registro = document.getElementById('Registro');
+        const Listado = document.getElementById('Listado');
+
+        const Boton_Registro = document.getElementById('Flecha_Registro');
+        const Boton_Listado = document.getElementById('Flecha_Listado');
+
+        Registro.addEventListener('click', function () {
+            Menu.style.display = "none";
+            Formulario.style.display = "flex";
+        })
+
+        Boton_Registro.addEventListener('click', function () {
+            Menu.style.display = "flex";
+            Formulario.style.display = "none";
+        })
+
+        Listado.addEventListener('click', function(){
+            Menu.style.display = "none";
+            Listado_Funcionarios.style.display = "flex";
+        })
+
+        Boton_Listado.addEventListener('click', function(){
+            Menu.style.display = "flex";
+            Listado_Funcionarios.style.display = "none";
+        })
+    </script>
+</body>
+</html>

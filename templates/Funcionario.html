@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Datos de {{ Datos_Funcionario['NOMBRE'] }} </title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(90deg, #58D68D  , #5DADE2  );
+            height: 97vh;
+            font-family: sans-serif;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            font-size: 18px;
+        }
+
+        th{
+            background-color: #D0D3D4;
+            padding: 1rem;
+            text-align: center;
+            width: 16.6%;
+        }
+
+        td{
+            background-color: black;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            width: 16.6%;
+        }
+
+        .Acciones{
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .Link{
+            border: 2px solid white;                
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 10px;
+            width: 100px;
+            margin-top: 0.5rem;
+            text-decoration: none;
+        }
+
+        .Center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;"> Datos de {{ Datos_Funcionario['NOMBRE'] }} </h1>
+    <span class="Center" style="flex-direction: column;">
+        <table style="width: 90%;">
+            <h2> Datos Personales </h2>
+            <tbody>
+                <tr>
+                    <th> RUT </th>
+                    <th> Nombre </th>
+                    <th> Sexo </th>
+                    <th> Dirección </th>
+                    <th> Teléfono </th>
+                </tr>
+
+                <tr>
+                    <td> {{ Datos_Funcionario['RUT'] }} </td>
+                    <td>
+                        {{ Datos_Funcionario['NOMBRE'] }} 
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarNombreFuncionario/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarNombreFuncionario/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                    <td>
+                        {{ Datos_Funcionario['SEXO'] }}
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarSexoFuncionario/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarSexoFuncionario/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                    <td> 
+                        {{ Datos_Funcionario['DIRECCION'] }}
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarDireccion/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarDireccion/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                    <td> 
+                        {{ Datos_Funcionario['TELEFONO'] }}
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarTelefonoFuncionario/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarTelefonoFuncionario/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <table style="width: 90%;">
+            <h2> Datos Laborales </h2>
+            <tbody>
+                <tr>
+                    <th> Cargo </th>
+                    <th> Fecha de Ingreso </th>
+                    <th> Area </th>
+                    <th> Departamento </th>                    
+                </tr>
+
+                <tr>
+                    <td> {{ Datos_Laborales['CARGO'] }} </td>
+                    <td> {{ Datos_Laborales['FECHA_INGRESO'] }} </td>
+                    <td> {{ Datos_Laborales['AREA'] }} </td>
+                    <td> {{ Datos_Laborales['DEPARTAMENTO'] }} </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <table style="width: 90%;">
+            <h2> Datos Contacto de Emergencia </h2>
+            <tbody>
+                <tr>
+                    <th> Nombre </th>
+                    <th> Relación </th>
+                    <th> Teléfono </th>               
+                </tr>
+
+                <tr>
+                    <td> 
+                        {{ Datos_Contacto['NOMBRE'] }}
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarNombreContacto/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarNombreContacto/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                    <td> 
+                        {{ Datos_Contacto['RELACION'] }}
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarRelacionContacto/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarRelacion/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                    <td>{{ Datos_Contacto['TELEFONO'] }} 
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarTelefonoContacto/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarTelefonoContacto/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <table style="width: 90%;">
+            <h2> Datos Carga Familiar </h2>
+            <tbody>
+                <tr>
+                    <th> Nombre </th>
+                    <th> Parentesco </th>
+                    <th> Sexo </th>  
+                    <th> RUT </th>                   
+                </tr>
+
+                <tr>
+                    <td> 
+                        {{ Datos_Familiares['NOMBRE']}} 
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarNombreCarga/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarNombreCarga/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                    <td> 
+                        {{ Datos_Familiares['PARENTESCO']}} 
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarParentesco/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarParentesco/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                    <td> 
+                        {{ Datos_Familiares['SEXO']}} 
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarSexoCarga/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarSexoCarga/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                    <td> 
+                        {{ Datos_Familiares['RUT']}} 
+                        <span class="Acciones">
+                            <a href="/Funcionario/ActualizarRUTCarga/{{Datos_Funcionario['ID']}}" style="background-color: #27AE60;" class="Link"> Editar </a>
+                            <a href="/Funcionario/BorrarRUTCarga/{{Datos_Funcionario['ID']}}" style="background-color: #E74C3C;" class="Link"> Eliminar </a>                        
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </span>
+    <br><br>
+</body>
+</html>

@@ -1,0 +1,9 @@
+Archivos Necesarios para instalar la aplicación en Inacap
+NO OLVIDAR: INSTALAR DEPENDENCIAS Y FRAMEWORKS NECESARIOS
+
+pip install Flask
+pip install flask-mysqldb
+pip install mysqlclient
+
+
+https://github.com/IgnacioG21/Ev4-Taller-de-Desarrollo

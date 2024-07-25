@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Actualizar Dirección de Funcionario </title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(90deg, #58D68D  , #5DADE2  );
+            font-size: 18px;
+            font-family: sans-serif;
+        }
+
+        input{
+            height: 1.5rem;
+            width: 250px;
+            text-align: center;
+        }
+        
+        label{
+            margin-bottom: 5px;
+        }
+
+        .Boton{
+            border: 3px solid white;
+            border-radius: 20px;
+            background-color: #1F618D;
+            color: white;
+            font-size: 20px;
+            height: 3rem;
+            width: 150px;
+            cursor: pointer;
+        }
+
+        .Boton:hover{
+            background-color: #154360;
+        }
+
+        .Contenedor-Input{
+            border: 3px solid white;
+            border-radius: 10px;
+            background-color: black;
+            color: white;
+            padding: 1rem 0rem 3rem 0rem;
+
+            width: 500px;
+        }
+
+        .Center1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;"> Actualizar Direccion de Funcionario </h1>
+    <form action="/Funcionario/ActualizarDireccion1" method="post" style="height: 70%;">
+        <span class="Center1" style="height: 100%;">
+            <div class="Contenedor-Input">
+                <span class="Center1">
+                    <input type="hidden" name="ID" value="{{ ID }}">
+                    <label for="Direccion"> Direccion de Funcionario </label>
+                    <input type="text" name="Direccion" id="Direccion" placeholder="Dirección de Funcionario" value="{{ Dato['DIRECCION'] }}">
+                </span>
+                <br>
+                <span class="Center1">
+                    <button type="submit" class="Boton"> Actualizar </button>
+                </span>
+            </div>
+        </span>
+    </form>
+</body>
+</html>
